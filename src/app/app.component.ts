@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserProfileFacade } from './facade/user-profile.facade';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'architecture-playground01';
+  constructor(private userProfileFacade: UserProfileFacade) {}
+
+  readonly state$ = this.userProfileFacade.state$;
+
+  getUserProfile() {
+    this.userProfileFacade.fetchUserProfile();
+  }
 }
